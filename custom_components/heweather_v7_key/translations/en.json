@@ -1,0 +1,22 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configure HeWeather V7",
+        "data": {
+          "api_host": "API host",
+          "api_key": "API Key",
+          "location": "Location ID",
+          "name": "name"
+        }
+      }
+    },
+    "error": {
+      "api_key_required": "API key is required",
+      "location_required": "Location ID is required"
+    },
+    "abort": {
+      "already_configured": "This location is already configured"
+    }
+  }
+}
