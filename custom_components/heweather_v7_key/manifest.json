@@ -1,0 +1,11 @@
+{
+  "domain": "heweather_v7_key",
+  "name": "HeWeather V7 (Key)",
+  "version": "1.0.0",
+  "documentation": "https://github.com/zhoujunn/heweather_v7_key",
+  "issue_tracker": "https://github.com/zhoujunn/heweather_v7_key/issues",
+  "codeowners": ["@zhoujunn"],
+  "requirements": ["aiohttp>=3.8.0"],
+  "iot_class": "cloud_polling",
+  "config_flow": true
+}
