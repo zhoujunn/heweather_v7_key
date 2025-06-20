@@ -1,0 +1,8 @@
+{
+  "name": "heweather（V7多城市版）",
+  "content_in_root": false,
+  "domains": ["sensor",'weather'],
+  "country": "cn",
+  "render_readme": true,
+  "filename": "custom_components/heweather_v7_key/manifest.json"
+}
