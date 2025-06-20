@@ -1,16 +1,22 @@
-和风天气V7 homeassistant插件
-最近看了一个https://github.com/c1pher-cn/heweather，
-发现大佬的插件没有办法多个城市实现，自己动手改了好多发现不如自己写一个，于是就写了一个支持多城市的插件。
-本版本的插件使用的自定义参考上述仓库，
+# HeWeather V7 Key - 和风天气多城市集成
 
-使用说明：
-1.使用和风官方apiv7版本
+基于和风天气V7 API开发的多城市Home Assistant集成，完美解决原插件无法添加多个城市的问题。
 
-2.必须申请开发者账号里的免费api，请务必升级到开发者账号（免费，api权限会比普通用户高一些）https://console.qweather.com/#/console
+## 功能亮点
 
-3.appkey申请需要先创建项目,后选创建凭据，选API KEY即可
+- 🏙️ **真正多城市支持** - 可同时添加多个城市天气数据
+- 📅 **增强预报功能** - 新增明天、后天天气专用传感器
+- 🔄 **优化更新机制** - 智能API调用避免超额限制
+- 🛠️ **配置简化** - 自动识别API Host，减少配置项
 
-国内的城市区域location关系：https://github.com/qwd/LocationList/blob/master/China-City-List-latest.csv
-4.在和风控制台的设置页面查看自己分配的API host：https://console.qweather.com/setting?lang=zh
+## 安装指南
 
-5、添加明天、后天天气传感器等。
+### 通过HACS安装
+1. 在HACS中搜索"heweather_v7_key"
+2. 点击安装并重启HA
+
+### 手动安装
+```bash
+cd /config/custom_components
+git clone https://github.com/zhoujunn/heweather_v7_key.git
+重启Home Assistant
