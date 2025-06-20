@@ -135,13 +135,11 @@ class HeWeatherCoordinator(DataUpdateCoordinator):
         self._last_update_time = datetime.now()
         self._next_update_time = datetime.now() + timedelta(seconds=self.update_interval_seconds)
         
+        # 仅保留必要信息
         new_data.update({
-            "api_calls": self._total_api_calls,
-            "successful_calls": self._successful_api_calls,
             "last_update": self._last_update_time.isoformat(),
             "next_update": self._next_update_time.isoformat(),
             "update_duration": time.time() - start_time,
-            "update_interval": self.update_interval_seconds
         })
         
         minutes = self.update_interval_seconds // 60

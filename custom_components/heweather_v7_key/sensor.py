@@ -68,17 +68,13 @@ class HeWeatherSensor(SensorEntity):
             self._data_type == "meta"
         )
 
-
-
-
     @property
     def native_value(self):
         """Return the state of the sensor."""
         try:
-            # Handle meta sensors
-            #
-            #if self._sensor_type == "api_calls":
-            #    return self.coordinator.data.get("api_calls", 0)
+            # 处理信息传感器
+            if self._sensor_type == "info":
+                return "正常"
                 
             if self._sensor_type == "last_update":
                 return self.coordinator.data.get("last_update", "N/A")
@@ -220,6 +216,17 @@ class HeWeatherSensor(SensorEntity):
             ATTR_LAST_UPDATE: self.coordinator.data.get("last_update", ""),
         }
         
+        # 添加信息传感器的详细属性
+        if self._sensor_type == "info":
+            attrs.update({
+                "api_calls": self.coordinator._total_api_calls,
+                "successful_calls": self.coordinator._successful_api_calls,
+                "last_update": self.coordinator._last_update_time.isoformat() if self.coordinator._last_update_time else "N/A",
+                "next_update": self.coordinator._next_update_time.isoformat() if self.coordinator._next_update_time else "N/A",
+                "update_duration": self.coordinator.data.get("update_duration", 0),
+                "update_interval": self.coordinator.update_interval_seconds
+            })
+        
         # Add endpoint-specific attributes
         endpoint_data = self.coordinator.data.get(self._data_type, {})
         #当前天气属性
@@ -239,7 +246,7 @@ class HeWeatherSensor(SensorEntity):
             warnings = endpoint_data.get("warning", [])
             count=len(warnings)
             if count==1:
-                attrs["text"] = f"请注意：当前1个天气预警！"
+                attrs["text"] = f"请注意：当前有1个天气预警！"
                 attrs["title"]=warnings[0].get("title", "")
                 attrs["level"]=warnings[0].get("level", "")
                 attrs["typeName"]=warnings[0].get("typeName", "")

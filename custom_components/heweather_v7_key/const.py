@@ -274,5 +274,11 @@ SENSOR_TYPES = {
         "unit": None,
         "icon": "mdi:weather-sunny-off",
         "data_type": "indices"
+    },
+    "info": {
+        "name": "接口信息",
+        "unit": None,
+        "icon": "mdi:information-outline",
+        "data_type": "meta"
     }
 }
