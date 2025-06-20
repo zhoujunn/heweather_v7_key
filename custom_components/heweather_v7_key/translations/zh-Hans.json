@@ -1,0 +1,24 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "配置和风天气V7",
+        "data": {
+          "api_host": "API主机",
+          "api_key": "API密钥",
+          "location": "位置ID",
+          "name": "地区名称",
+          "update_interval": "更新间隔(秒)"
+        },
+        "description": "配置和风天气API参数"
+      }
+    },
+    "error": {
+      "api_key_required": "API密钥不能为空",
+      "location_required": "位置ID不能为空"
+    },
+    "abort": {
+      "already_configured": "该位置已配置"
+    }
+  }
+}
