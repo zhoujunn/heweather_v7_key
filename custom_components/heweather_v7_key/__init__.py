@@ -1,4 +1,4 @@
-"""The HeWeather V7 Key integration."""
+"""The HeWeather integration."""
 import asyncio
 import logging
 import time

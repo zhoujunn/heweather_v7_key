@@ -1,4 +1,4 @@
-"""Sensor platform for HeWeather V7 Key integration."""
+"""Sensor platform for HeWeather integration."""
 import logging
 from datetime import datetime
 from homeassistant.components.sensor import SensorEntity
@@ -167,15 +167,17 @@ class HeWeatherSensor(SensorEntity):
                 elif self._sensor_type == "o3":
                     return now_data.get("o3", "NA")
 
-            #明天、后天天气
+            #明天、后天天气 weather_today
             elif self._data_type == "forecast":
                 daily_data = endpoint_data.get("daily", [])
+                if self._sensor_type == "weather_today" and len(daily_data) > 0:
+                    return daily_data[0].get("textDay", "N/A")
                 if self._sensor_type == "weather_tomorrow" and len(daily_data) > 1:
                     return daily_data[1].get("textDay", "N/A")
                 if self._sensor_type == "weather_day_after" and len(daily_data) > 2:
                     return daily_data[2].get("textDay", "N/A")
 
-            #生活指数
+            #生活指数  
             elif self._data_type == "indices":
                 daily_data = endpoint_data.get("daily", [])
                 type_mapping = {
@@ -261,7 +263,19 @@ class HeWeatherSensor(SensorEntity):
             else:
                 attrs["text"] = "当前无任何天气预警！"
 
-        #明天、后天天气属性
+        #明天、后天天气属性 weather_today
+        elif self._sensor_type == "weather_today":
+            daily_data = endpoint_data.get("daily", [])
+            if len(daily_data) > 0:
+                day = daily_data[0]
+                attrs.update({
+                    "textDay": day.get("textDay", ""),
+                    "textNight": day.get("textNight", ""),
+                    "tempMax": day.get("tempMax", ""),
+                    "tempMin": day.get("tempMin", ""),
+                    "humidity": day.get("humidity", ""),
+                    "text": f'白天：{day.get("textDay", "")}，晚上：{day.get("textNight", "")}。最高气温：{day.get("tempMax", "")}度，最低气温：{day.get("tempMin", "")}度。湿度：{day.get("humidity", "")}%。'
+                })
         elif self._sensor_type == "weather_tomorrow":
             daily_data = endpoint_data.get("daily", [])
             if len(daily_data) > 1:

@@ -1,5 +1,5 @@
-"""Constants for HeWeather V7 Key integration."""
-DOMAIN = "heweather_v7_key"
+"""Constants for HeWeather integration."""
+DOMAIN = "heweather"
 
 CONF_API_HOST = "api_host"
 CONF_API_KEY = "api_key"
@@ -88,6 +88,12 @@ SENSOR_TYPES = {
         "unit": "°C",
         "icon": "mdi:thermometer-water",
         "data_type": "current"
+    },
+    "weather_today": {
+        "name": "今天天气",
+        "unit": None,
+        "icon": "mdi:weather-sunny-alert",
+        "data_type": "forecast"
     },
     "weather_tomorrow": {
         "name": "明天天气",
